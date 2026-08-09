@@ -57,5 +57,12 @@ SMD suits a milled board. An SMD pad solders from one face. An unplated
 through-hole pad does not, and the top pad under a DIP body is out of reach.
 Cut stencils on the same machine and reflow on a hotplate.
 
-Each via is hand labour. Nothing is plated at home. Route on one layer where you
-can, and use a pour on the back.
+Boards are double sided. Route on both layers.
+
+Nothing is plated at home, so each via is a rivet you set or a wire you solder
+on both faces. Count vias, not layers. A tidy two-layer route with few vias
+beats a congested one-layer route.
+
+Double-sided milling needs alignment. Put four 2mm dowel holes in the corners,
+3mm in from the edges. Keep the dowels in the board for every operation. Leave
+this margin free of copper and parts.
