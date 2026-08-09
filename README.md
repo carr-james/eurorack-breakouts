@@ -46,11 +46,11 @@ behaves.
 ## Fabrication
 
 Use the house rules in
-`eurorack-blocks/design-rules/house-mill.kicad_dru`.
+`eurorack-common-library/design-rules/house-mill.kicad_dru`.
 
 Choose parts in this order:
 
-1. Use a part you have in stock. Check PartsBox.
+1. Use a part you have in stock. See `eurorack-common-library/docs/preferred-values.md`.
 2. If the value is not in stock, choose SMD.
 
 SMD suits a milled board. An SMD pad solders from one face. An unplated
