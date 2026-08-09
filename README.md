@@ -31,6 +31,10 @@ docs/                      conventions
 
 ## Conventions
 
+A breakout carries no jacks, pots, switches or LEDs. The breadboard rig already
+has those, and they plug in. Bring every block signal out on a header instead.
+The board stays small, and you buy no part twice.
+
 Headers use 0.1in pitch on a 0.1in grid. The board then fits a breadboard. Put
 signal pins on the long edges. Put pin 1 at the bottom left, seen from the top.
 
