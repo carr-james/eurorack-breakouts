@@ -1,65 +1,61 @@
 # Eurorack Breakouts
 
-Small, breadboard-friendly PCBs — one per reusable circuit — milled in-house on
-the Makera Carvera Air.
+Small breadboard-friendly PCBs. One board per reusable circuit. Milled at home
+on the Makera Carvera Air.
 
-Each breakout is the physical counterpart of a block in
-[eurorack-blocks](https://github.com/carr-james/eurorack-blocks): same circuit,
-wrapped with headers, an outline and labels so it can be dropped straight into a
-breadboard while prototyping a new module.
+Each board is the physical form of a circuit in
+[eurorack-blocks](https://github.com/carr-james/eurorack-blocks). Drop a board
+into a breadboard to prototype a module.
 
-## Why these exist separately from the blocks
+## Why these are separate from the circuits
 
-A design block and a breakout board pull in opposite directions:
+The two forms want opposite things.
 
-| | design block | breakout |
+| | circuit | breakout |
 |---|---|---|
-| exists as | schematic + layout fragment, absorbed into a host board | a physical PCB |
-| wants | no connectors, minimal area, edge-agnostic | 0.1" headers, defined outline, labels, test points |
+| Exists as | schematic and layout fragment | a physical PCB |
+| Wants | no connectors, small area | headers, outline, labels |
 
-One artifact cannot serve both well. What they share is the **circuit** — the
-schematic and part choices. The breakout is a thin wrapper around the block.
+One artifact cannot serve both. They share the circuit definition.
 
-The useful by-product: **a breakout is the reference design and test vehicle for
-its block.** Before a circuit is standardised on, there is a physical board that
-proves it works.
+A breakout is also the reference design and the test vehicle for its circuit.
+The circuit works in hardware before a module depends on it.
 
 ## Layout
 
 ```
-boards/<block-name>/       one KiCad project per breakout, named after its block
-templates/breakout/        starting point for a new breakout
-docs/                      the conventions below, in detail
+boards/<circuit-name>/     one KiCad project per breakout
+templates/breakout/        start a new breakout from here
+docs/                      conventions
 ```
 
 ## Conventions
 
-**Headers.** 0.1" pitch, on a 0.1" grid, so the board seats in a standard
-breadboard. Signal pins on the long edges; keep pin 1 bottom-left when viewed
-from the top.
+Headers use 0.1in pitch on a 0.1in grid. The board then fits a breadboard. Put
+signal pins on the long edges. Put pin 1 at the bottom left, seen from the top.
 
-**Power.** Eurorack runs on ±12V, breadboard work usually does not. Every
-breakout brings power in on a dedicated header, labelled, with the same pin
-order across the whole set. Decide it once, never think about it again.
+Power comes in on its own header. Use the same pin order on every board.
+Eurorack uses +/-12V. Breadboard work often does not.
 
-**Version in copper.** Each board carries `<block-name> v<x.y.z>` milled into
-copper, matching the block version it was built from. Not silkscreen — laser
-silkscreen on the Carvera renders text poorly at this size.
+Put `<circuit-name> v<x.y.z>` in copper. Laser silkscreen prints small text
+badly.
 
-**Test points** on anything you would otherwise be probing blind: inputs,
-outputs, and any internal node the circuit's behaviour hinges on.
+Add test points to inputs, outputs, and any node that shows how the circuit
+behaves.
 
 ## Fabrication
 
-Milled in-house, so the house rules in
-`eurorack-blocks/design-rules/house-mill.kicad_dru` apply — 0.2mm track and
-clearance, 0.9mm vias, nothing plated.
+Use the house rules in
+`eurorack-blocks/design-rules/house-mill.kicad_dru`.
 
-**Surface-mount by default.** Counterintuitive for hand assembly, but with no
-plated through-holes an SMD pad solders from one face and a through-hole pad
-does not — and you cannot reach the top-side pad under a DIP body. SMD also
-suits stencils cut on the same machine and a hotplate or reflow oven.
+Choose parts in this order:
 
-**Vias are hand labour.** Every one is a rivet you set or a wire you solder both
-sides of. Prefer single-layer routing with a back-side pour; treat each stitch
-as a deliberate cost.
+1. Use a part you have in stock. Check PartsBox.
+2. If the value is not in stock, choose SMD.
+
+SMD suits a milled board. An SMD pad solders from one face. An unplated
+through-hole pad does not, and the top pad under a DIP body is out of reach.
+Cut stencils on the same machine and reflow on a hotplate.
+
+Each via is hand labour. Nothing is plated at home. Route on one layer where you
+can, and use a pour on the back.
